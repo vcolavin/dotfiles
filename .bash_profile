@@ -1,51 +1,31 @@
-# echo is like puts for bash (bash is the program running in your terminal)
-echo "Loading ~/.bash_profile a shell script that runs in every new terminal you open"
-
-# $VARIABLE will render before the rest of the command is executed
 echo "Logged in as $USER at $(hostname)"
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-# Path for RVM
-test -d "$HOME/.rvm/bin" && PATH="$PATH:$HOME/.rvm/bin"
-
-# Rbenv autocomplete and shims
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-# Path for RBENV
-test -d "$HOME/.rbenv/" && PATH="$HOME/.rbenv/bin:$PATH"
-
-# Path changes are made non-destructive with PATH=new_path;$PATH   This is like A=A+B so we preserve the old path
-
-# Path order matters, putting /usr/local/bin before /usr/bin
-# ensures brew programs will be seen and used before another program
-# of the same name is called
+# set tab length to 2 spaces
+tabs -2
 
 # Path for brew
 test -d /usr/local/bin && export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 # Path for Heroku
 test -d /usr/local/heroku/ && export PATH="/usr/local/heroku/bin:$PATH"
 
+# load NVM
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+
 # Load git completions
 git_completion_script=/usr/local/etc/bash_completion.d/git-completion.bash
 test -s $git_completion_script && source $git_completion_script
 
 # A more colorful prompt
-# \[\e[0m\] resets the color to default color
-c_reset='\[\e[0m\]'
-#  \e[0;31m\ sets the color to red
-c_path='\[\e[0;31m\]'
-# \e[0;32m\ sets the color to green
-c_git_clean='\[\e[0;32m\]'
-# \e[0;31m\ sets the color to red
-c_git_dirty='\[\e[0;31m\]'
+c_reset='\[\e[0m\]' # default
+c_path='\[\e[0;31m\]' # red
+c_git_clean='\[\e[0;32m\]' # green
+c_git_dirty='\[\e[0;31m\]' # red
+cat_emoji='🐈\[  \]' # bash doesn't count the spaces emoji take up correctly. this fixes that.
 
-# PS1 is the variable for the prompt you see everytime you hit enter
-if [ $OSTYPE == 'darwin15' ] && ! [ $ITERM_SESSION_ID ]
-then
-  PROMPT_COMMAND=$PROMPT_COMMAND'; PS1="${c_path}\W${c_reset}$(git_prompt) :> "'
-else
-  PROMPT_COMMAND=$PROMPT_COMMAND' PS1="${c_path}\W${c_reset}$(git_prompt) :> "'
-fi
+# PROMPT_COMMAND is run every time the prompt is rendered
+# in this case, it sets PS1, the prompt text
+# allowing it to update with new information, e.g., the output of git_prompt
+PROMPT_COMMAND='PS1="${c_path}\w${c_reset}$(git_prompt) ${cat_emoji}$ "'
 
 # determines if the git branch you are on is clean or dirty
 git_prompt ()
@@ -71,13 +51,14 @@ export LSCOLORS=ExGxFxdxCxDxDxaccxaeex
 # Force ls to use colors (G) and use humanized file sizes (h)
 alias ls='ls -Gh'
 
+alias glog='git log --oneline --graph -2'
+
 # Force grep to always use the color option and show line numbers
 export GREP_OPTIONS='--color=always'
 
-# Set sublime as the default editor
-which -s subl && export EDITOR="subl --wait"
+# Set VS Code as the default editor
+which -s code && export EDITOR="code --wait"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Useful aliases
-
-alias e="subl"
-alias be="bundle exec"
+alias gs='git status'
+alias gd='git diff'
