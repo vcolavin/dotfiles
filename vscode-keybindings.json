@@ -1,0 +1,37 @@
+{
+	"workbench.startupEditor": "newUntitledFile",
+	"editor.multiCursorModifier": "ctrlCmd",
+	"editor.formatOnPaste": false,
+	"editor.renderWhitespace": "all",
+	"editor.wordWrap": "bounded",
+	"editor.wordWrapColumn": 100,
+	"editor.wrappingIndent": "indent",
+	"editor.formatOnSave": true, // disable for Lumina
+	"editor.tabSize": 2,
+	"editor.minimap.enabled": false,
+	"explorer.openEditors.visible": 0,
+	"window.zoomLevel": 1,
+	"files.trimTrailingWhitespace": true, // disable for Lumina
+	"files.insertFinalNewline": true, // disable for Lumina
+	"files.trimFinalNewlines": true, // disable for Lumina
+	"gitblame.infoMessageFormat": "${commit.hash}",
+	"gitblame.statusBarMessageFormat": "${commit.hash_short, 8} | ${time.ago} | ${commit.summary} | ${committer.name}",
+	"gitblame.ignoreWhitespace": true,
+	"search.exclude": {
+		"release/*": true,
+		"build/*": true,
+		"src/js/libs/*": true,
+		"src/css/*": true,
+		"node_modules/*": true
+	},
+	"workbench.colorTheme": "Default High Contrast",
+	"prettier.useTabs": true,
+	"prettier.singleQuote": true,
+	"prettier.tabWidth": 4,
+	"prettier.eslintIntegration": true,
+	"telemetry.enableTelemetry": false,
+	"telemetry.enableCrashReporter": false,
+	"workbench.activityBar.visible": true,
+	"workbench.editor.showTabs": true,
+	"workbench.statusBar.feedback.visible": false
+}
