@@ -20,15 +20,10 @@ export LESS='eFRX-x2'
 test -d /usr/local/bin && export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-
-# # Load nvm
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
-# # Load nvm bash completion
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# load nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# load nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Load git completions
 git_completion_script=/usr/local/etc/bash_completion.d/git-completion.bash
@@ -54,7 +49,7 @@ c_background_white='\[\e[0;47m\]'
 c_reset='\[\e[0m\]'
 
 # bash version < 4 doesn't doesn't do a couple cool unicode things. this fixes that mostly.
-if [ "${BASH_VERSINFO:-0}" -ge 4 ] ; then
+if [ "${BASH_VERSINFO:-0}" -ge 4 ] || [ "${BASH_VERSINFO:-0}" -ge 5 ] ; then
   cat_emoji='🐈'
   triangle=$'\uE0B0'
 else
@@ -109,5 +104,3 @@ export GREP_OPTIONS='--color=auto'
 # Set VS Code as the default editor
 which -s code && export EDITOR="code --wait"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
