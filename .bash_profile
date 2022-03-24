@@ -16,17 +16,20 @@ tabs -2
 # vastly more readable, because it defaults to 8.
 export LESS='eFRX-x2'
 
+# make macos shut up
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Path for brew
 test -d /usr/local/bin && export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-# load nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# load nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# Load nvm bash completion
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Load git completions
-git_completion_script=/usr/local/etc/bash_completion.d/git-completion.bash
+git_completion_script=/opt/homebrew/etc/profile.d/bash_completion.sh
 test -s $git_completion_script && source $git_completion_script
 
 c_black='\[\e[0;30m\]'
@@ -48,14 +51,7 @@ c_background_cyan='\[\e[0;46m\]'
 c_background_white='\[\e[0;47m\]'
 c_reset='\[\e[0m\]'
 
-# bash version < 4 doesn't doesn't do a couple cool unicode things. this fixes that mostly.
-if [ "${BASH_VERSINFO:-0}" -ge 4 ] || [ "${BASH_VERSINFO:-0}" -ge 5 ] ; then
-  cat_emoji='🐈'
-  triangle=$'\uE0B0'
-else
-  cat_emoji='🐈\[ \]'
-  triangle=' '
-fi
+triangle=$'\uE0B0'
 
 c_path="$c_black$c_background_blue \w$c_reset$c_blue$triangle$c_reset"
 c_git_clean=$c_green
@@ -103,4 +99,7 @@ export GREP_OPTIONS='--color=auto'
 
 # Set VS Code as the default editor
 which -s code && export EDITOR="code --wait"
+
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+eval $(/opt/homebrew/bin/brew shellenv)
