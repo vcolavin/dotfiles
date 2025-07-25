@@ -1,37 +1,76 @@
-{
-	"workbench.startupEditor": "newUntitledFile",
-	"editor.multiCursorModifier": "ctrlCmd",
-	"editor.formatOnPaste": false,
-	"editor.renderWhitespace": "all",
-	"editor.wordWrap": "bounded",
-	"editor.wordWrapColumn": 100,
-	"editor.wrappingIndent": "indent",
-	"editor.formatOnSave": true, // disable for Lumina
-	"editor.tabSize": 2,
-	"editor.minimap.enabled": false,
-	"explorer.openEditors.visible": 0,
-	"window.zoomLevel": 1,
-	"files.trimTrailingWhitespace": true, // disable for Lumina
-	"files.insertFinalNewline": true, // disable for Lumina
-	"files.trimFinalNewlines": true, // disable for Lumina
-	"gitblame.infoMessageFormat": "${commit.hash}",
-	"gitblame.statusBarMessageFormat": "${commit.hash_short, 8} | ${time.ago} | ${commit.summary} | ${committer.name}",
-	"gitblame.ignoreWhitespace": true,
-	"search.exclude": {
-		"release/*": true,
-		"build/*": true,
-		"src/js/libs/*": true,
-		"src/css/*": true,
-		"node_modules/*": true
-	},
-	"workbench.colorTheme": "Default High Contrast",
-	"prettier.useTabs": true,
-	"prettier.singleQuote": true,
-	"prettier.tabWidth": 4,
-	"prettier.eslintIntegration": true,
-	"telemetry.enableTelemetry": false,
-	"telemetry.enableCrashReporter": false,
-	"workbench.activityBar.visible": true,
-	"workbench.editor.showTabs": true,
-	"workbench.statusBar.feedback.visible": false
-}
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "cmd+t",
+        "command": "-workbench.action.showAllSymbols"
+    },
+    {
+        "key": "cmd+t",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "cmd+1",
+        "command": "-workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "cmd+k cmd+2",
+        "command": "-editor.foldLevel2",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "cmd+2",
+        "command": "-workbench.action.focusSecondEditorGroup"
+    },
+    {
+        "key": "cmd+k cmd+1",
+        "command": "-editor.foldLevel1",
+        "when": "editorTextFocus && foldingEnabled"
+    },
+    {
+        "key": "ctrl+cmd+1",
+        "command": "-workbench.action.moveEditorToFirstGroup"
+    },
+    {
+        "key": "cmd+1",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+    },
+    {
+        "key": "cmd+2",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+    },
+    {
+        "key": "cmd+1",
+        "command": "workbench.action.previousEditor"
+    },
+    {
+        "key": "cmd+2",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "cmd+u",
+        "command": "-cursorUndo",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "cmd+u",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+    {
+        "key": "f12",
+        "command": "-editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+m",
+        "command": "-workbench.actions.view.problems",
+        "when": "workbench.panel.markers.view.active"
+    },
+    {
+        "key": "shift+cmd+m",
+        "command": "copyRelativeFilePath",
+        "when": "editorFocus"
+    }
+]
